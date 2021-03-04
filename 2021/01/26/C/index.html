@@ -184,7 +184,7 @@
     
     <span class="post-meta mr-2">
       <i class="iconfont icon-chart"></i>
-      0 字
+      672 字
     </span>
   
 
@@ -194,7 +194,7 @@
       <i class="iconfont icon-clock-fill"></i>
       
       
-      1
+      7
        分钟
     </span>
   
@@ -227,7 +227,24 @@
             <h1 style="display: none">C++</h1>
             
             <div class="markdown-body">
-              
+              <p>C/C++ 程序运行起来内存分布？ 为什么要进行分区？每个区域存储什么数据？</p>
+<pre><code>                内核空间</code></pre>
+<p>放的是与操作系统相关的代码，用户没有权限直接去操作。如果要操作，只能通过指定的api函数进行</p>
+<pre><code>           栈（向下生长）</code></pre>
+<p>存放与函数调用相关的一些数据<br>栈帧：函数的参数，函数体中的局部变量，一些寄存器信息<br>特性：函数调用完成之后，对应的栈帧就被回收了<br>栈：有默认的大小—–8192kb即8Mlinux</p>
+<pre><code>              内存映射段</code></pre>
+<p>放置静态库动态库的一些数据等</p>
+<pre><code>          堆（向上增长）</code></pre>
+<p>用户进行动态内存申请<br>C语言中：malloc/calloc/realloc<br>这些空间用完之后，必须要用free来进行释放<br>对空间相对而言比较大</p>
+<pre><code>                  数据段
+     （全局数据，静态数据）</code></pre>
+<p>全局数据（变量和对象），被static修饰数据<br>特性：当程序启动时，该部分深故居的空间就被开辟好了，当程序消亡时被销毁——即改位置存储的数据生命周期伴随程序<br>                     代码段<br>       （可执行代码/只读常量）<br>放置用户代码、以及只读常量—比如： “HELLO”<br>该位置的数据不能修改。</p>
+<p>sizeof和strlen区别<br>     sizeof是运算符 strlen是函数<br>malloc/calloc/realloc这三个方法之间的去区别？<br>    相同点：<br>              都是C语言中进行动态内存申请的库函数<br>              申请的空间都在堆上，用完之后必须要使用free来进行释放<br>              如果空间申请成功，返回空间的首地址，如果空间申请失败返回的是NULL，因此在使用之前必须要进行判空<br>              返回值类型都是void<em>，在接收返回值时必须要进行强转<br>   不同点：<br>              void</em> malloc(size_t size)<br>                  malloc的参数是用户所申请空间的字节数，申请空间成功返回空间的首地址，如果申请空间失败，返回值空，用户在进行接收时必须要强转，在使用时必须要进行判空，使用完成之后必须要借助free来进行释放。<br>             void* calloc(size_t num,size_t size)<br>         参数个数不同<br>                 num  :   表示元素的个数<br>                 size   ： 表示单个元素的所占的字节数</p>
+<pre><code>    功能上唯一的不同 ： calloc会将其申请的内容空间初始化为0
+         void* realloc(void* p,size_t size): 将p指向堆空间大小调整到size字节
+             p==NULL---&gt;该函数的功能与malloc类似 -- 直接申请size个字节返回即可
+             p!= NULL---&gt;将p指向的空间大小调整到size字节</code></pre>
+
             </div>
             <hr>
             <div>
@@ -258,6 +275,32 @@
               
             </div>
 
+            
+              <!-- Comments -->
+              <article class="comments" id="comments">
+                
+                
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    <script type="text/javascript">
+      var disqus_config = function() {
+        this.page.url = 'http://mistukes.com/2021/01/26/C/';
+        this.page.identifier = '/2021/01/26/C/';
+      };
+      Fluid.utils.waitElementVisible('disqus_thread', function () {
+        var d = document, s = d.createElement('script');
+        s.src = '//' + '' + '.disqus.com/embed.js';
+        s.setAttribute('data-timestamp', new Date());
+        (d.head || d.body).appendChild(s);
+      });
+    </script>
+    <noscript>Please enable JavaScript to view the
+      <a target="_blank" href="https://disqus.com/?ref_noscript" rel="nofollow noopener noopener">comments powered by Disqus.</a>
+    </noscript>
+  </div>
+
+
+              </article>
             
           </article>
         </div>

@@ -190,7 +190,11 @@
           
             
           
-          
+          C/C++ 程序运行起来内存分布？ 为什么要进行分区？每个区域存储什么数据？
+                内核空间
+放的是与操作系统相关的代码，用户没有权限直接去操作。如果要操作，只能通过指定的api函数进行
+           栈（向下生长）
+存放与函数调用相关的一些数据栈帧：函数的参数，函数体中的局部变量，一些寄存器信息特性：函数调用完成之后，对应的栈帧就被回收了栈：有默认的大小—–81
         </a>
       </p>
 
@@ -233,41 +237,6 @@
           <div class="post-meta mr-3">
             <i class="iconfont icon-date"></i>
             <time datetime="2021-01-23 00:24" pubdate>
-              2021-01-23
-            </time>
-          </div>
-        
-        
-        
-      </div>
-    </article>
-  </div>
-
-  <div class="row mx-auto index-card">
-    
-    
-    <article class="col-12 col-md-12 mx-auto index-info">
-      <h1 class="index-header">
-        
-        <a href="/2021/01/23/hello-world/">Hello World</a>
-      </h1>
-
-      <p class="index-excerpt">
-        <a href="/2021/01/23/hello-world/">
-          
-          
-            
-          
-          Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick
-        </a>
-      </p>
-
-      <div class="index-btm post-metas">
-        
-          <div class="post-meta mr-3">
-            <i class="iconfont icon-date"></i>
-            <time datetime="2021-01-23 00:21" pubdate>
               2021-01-23
             </time>
           </div>
